@@ -274,7 +274,7 @@ def prepareTestInput(testX, user_feas, item_profile):
 def prepareFeas(embedding_dim, 
                 seqL, 
                 select_feas, 
-                user_feas, 
+                user_feas,
                 item_feas, 
                 fea_max_idx, 
                 float_num_feas, 
