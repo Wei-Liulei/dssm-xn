@@ -34,6 +34,12 @@ https://github.com/mwouts/jupytext
 
 已实现将类别特征标签编码和数值特征归一化。
 
+
+
+
+
+
+
 ## todo：
 
 在tf模型预处理中实现特征缩放（取对数）
