@@ -5,8 +5,12 @@
 # %%
 import json
 from pathlib import Path
+import os
 import warnings
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1' # 禁用gpu(导入tf前)
+warnings.filterwarnings("ignore")
 import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from preprocess import (
     getdata,
     processModel,
@@ -20,12 +24,9 @@ from tensorflow.python.keras.callbacks import EarlyStopping
 import numpy as np
 from tensorflow.keras.metrics import BinaryAccuracy, Precision, Recall, AUC
 
-# wlwldsds
-# os.environ['CUDA_VISIBLE_DEVICES'] = '-1' # 禁用gpu(导入tf前)
-warnings.filterwarnings("ignore")
-# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 # from tensorflow.python.keras.models import Model
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+# tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)   #
 # from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 # from tensorflow.keras.metrics import TruePositives, FalsePositives, TrueNegatives, FalseNegatives
 # %% [markdown]
@@ -152,8 +153,8 @@ tf.keras.utils.plot_model(model.layers[-1], show_shapes=True)  # , rankdir="LR"
 model_version = "1"
 model_export_path = "./model/"
 # !!!, save_traces=False 会减少序列化文件大小和时间，但是需要自定义层定义config方法
-user_model.save(Path(model_export_path+'u_emb/'+model_version), save_format="tf")
-item_model.save(Path(model_export_path+'i_emb/'+model_version), save_format="tf")
+user_model.save(Path(model_export_path+'u_emb/'+model_version), save_format="tf", save_traces=True )
+item_model.save(Path(model_export_path+'i_emb/'+model_version), save_format="tf", save_traces=True)
 
 # %% test model
 test_user_input, test_item_input = prepareTestInput(testX, user_feas, item_profile)
