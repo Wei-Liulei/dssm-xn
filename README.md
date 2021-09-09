@@ -1,4 +1,5 @@
 # dssm-xn
+remote
 
 小牛动漫双塔召回模型
 
